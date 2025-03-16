@@ -5,6 +5,11 @@
     index,
     changeSelectedPokemon,
     setMovesMode,
+    canSwitch,
+    setSwapped1,
+    setSwapped2,
+    swapPokemons,
+    isSwapAlreadyHappened,
   } = $props();
 </script>
 
@@ -13,12 +18,21 @@
     <center>
       <button
         onclick={() => {
+          if (!canSwitch) return;
           changeSelectedPokemon(index);
           setMovesMode();
         }}
         class="pokemonButton"
       >
         <img
+          ondragstart={() => {
+            setSwapped1(index);
+          }}
+          ondragenter={() => {
+            if (isSwapAlreadyHappened) return
+            setSwapped2(index);
+            swapPokemons();
+          }}
           class="pokemonGif"
           src={pokemonData.gifUrl}
           alt={pokemonData.name}
@@ -86,7 +100,7 @@
     margin: 10px 0;
     font-weight: bold;
     font-size: 1.2rem;
-    cursor: url("https://img.icons8.com/ff0000/small/16/filled-trash.png"),
+    cursor: url("https://img.icons8.com/000000/small/16/filled-trash.png"),
       pointer;
   }
 
@@ -103,6 +117,5 @@
     font-weight: bold;
     border-radius: 3px;
     text-transform: uppercase;
-    border: 0.5px solid black;
   }
 </style>

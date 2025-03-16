@@ -3,6 +3,7 @@ import PokemonData from "../lib/PokemonData";
 
 export const API_URL = "https://pokeapi.co/api/v2/pokemon";
 export const API_MOVES_URL = "https://pokeapi.co/api/v2/move";
+export const API_ABILITY_URL = "https://pokeapi.co/api/v2/ability";
 
 export const defaultPokemonSquad = [
     Object(),
@@ -19,7 +20,6 @@ export const isSquadEmpty = (pokemonSquad: PokemonData[]) => {
     for (let index = 0; index < pokemonSquad.length; index++)
         if (Object.entries(pokemonSquad[index]).length > 0) return false;
     return true
-
 }
 
 export const readTextFile = (path: string): string[] => {

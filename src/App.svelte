@@ -48,7 +48,7 @@
 
     if (
       e.key === "Enter" &&
-      everyPokemonName.indexOf(capitalize(pokemonSearchName)) != -1
+      everyPokemonName.indexOf(capitalize(pokemonSearchName.toLowerCase())) != -1
     ) {
       toAddPokemonName = pokemonSearchName;
       return handleSelectClick();
@@ -68,16 +68,30 @@
       .catch((error) => error.response);
     if (response.status == 404) return;
 
+    let abilities: string[] = [];
+    for (let index = 0; index < response.data.abilities.length; index++) {
+      abilities.push(response.data.abilities[index].ability.name);
+    }
     const pokemon = new PokemonData(
       response.data.name,
       response.data.types,
       response.data.sprites.versions["generation-v"][
         "black-white"
-      ].animated.front_default
+      ].animated.front_default,
+      abilities
     );
+
     response.data.moves.forEach((element: any) => {
       pokemon.learnableMoves.push(element.move.name);
     });
+    pokemon.stats = {
+      HP: response.data.stats[0].base_stat,
+      Attack: response.data.stats[1].base_stat,
+      Defense: response.data.stats[2].base_stat,
+      "Sp.Attack": response.data.stats[3].base_stat,
+      "Sp.Defense": response.data.stats[4].base_stat,
+      Speed: response.data.stats[5].base_stat,
+    };
     pokemon.learnedMoves = pokemon.learnableMoves.slice(0, 4);
     pokemonSquad[selectedPokemonIndex] = pokemon;
     pokemonSearchName = "";
@@ -107,7 +121,14 @@
       saveSquad(pokemonSquad, currentSquad);
     }
   };
-  
+  const replaceAbility = (name: string, newAbility: string) => {
+    for (let index = 0; index < pokemonSquad.length; index++) {
+      if (pokemonSquad[index].name === name)
+        pokemonSquad[index].learnedAbility = newAbility;
+      saveSquad(pokemonSquad, currentSquad);
+    }
+  };
+
   const changeSquad = () => {
     const squad = localStorage.getItem(`Squad${currentSquad}`);
     if (!squad) {
@@ -116,6 +137,22 @@
     }
     pokemonSquad = JSON.parse(atob(squad));
     everyPokemonName = readTextFile("./src/pokemons.txt");
+  };
+
+  let swapped1: number, swapped2: number;
+  const setSwapped1 = (index: number) => {
+    swapped1 = index;
+  };
+  const setSwapped2 = (index: number) => {
+    swapped2 = index;
+  };
+  const swapPokemons = () => {
+    if (swapped1 == swapped2) return;
+    let t = pokemonSquad[swapped1];
+    pokemonSquad[swapped1] = pokemonSquad[swapped2];
+    pokemonSquad[swapped2] = t;
+    saveSquad(pokemonSquad, currentSquad);
+    swapped1 = swapped2 = -1;
   };
 </script>
 
@@ -144,7 +181,7 @@
         onclick={() => {
           pokemonSquad = [...defaultPokemonSquad];
           saveSquad(defaultPokemonSquad, currentSquad);
-        }}>Clear All</button
+        }}>Clear Squad</button
       >
     {:else}
       <button
@@ -184,7 +221,6 @@
     >
       {#each inputMatchingPokemons as pokemonName, index}
         {#if index == 0}
-          {console.log(pokemonName)}
           <option selected disabled unselectable="on" value=""
             >Found {inputMatchingPokemons.length} matching pokemons</option
           >
@@ -207,10 +243,22 @@
             {removePokemon}
             {changeSelectedPokemon}
             {setMovesMode}
+            canSwitch={!searchBarVisibility}
+            {setSwapped1}
+            {setSwapped2}
+            {swapPokemons}
+            isSwapAlreadyHappened={swapped1 == -1}
           />
         {:else}
           <button class="pokeballButton">
-            <Pokeball {handlePokeballClick} {index} />
+            <Pokeball
+              {handlePokeballClick}
+              {index}
+              {setSwapped1}
+              {setSwapped2}
+              {swapPokemons}
+              isSwapAlreadyHappened={swapped1 == -1}
+            />
           </button>
         {/if}
       {/each}
@@ -219,6 +267,7 @@
     <MovePage
       pokemonData={pokemonSquad[selectedPokemonIndexForMoves]}
       {replaceMove}
+      {replaceAbility}
     />
   {/if}
 </main>

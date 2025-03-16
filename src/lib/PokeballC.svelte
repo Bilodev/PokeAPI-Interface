@@ -1,9 +1,25 @@
 <script lang="ts">
-  let { handlePokeballClick, index } = $props();
+  let {
+    handlePokeballClick,
+    index,
+    setSwapped1,
+    setSwapped2,
+    swapPokemons,
+    isSwapAlreadyHappened,
+  } = $props();
 </script>
 
 <main>
   <img
+    ondragstart={() => {
+      setSwapped1(index);
+    }}
+    ondragenter={() => {
+      if (isSwapAlreadyHappened ) return;
+
+      setSwapped2(index);
+      swapPokemons();
+    }}
     onclick={() => {
       handlePokeballClick(index);
     }}

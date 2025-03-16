@@ -12,6 +12,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: default;
+  overflow-anchor: none;
 }
 
 squad {
@@ -65,92 +67,110 @@ input[type="text"] {
   font-weight: bold;
 }
 
-type[name="fire"] {
+type[name="fire"],
+move[name="fire"] {
   background: linear-gradient(45deg, red, orange);
   color: white;
 }
 
-type[name="water"] {
+type[name="water"],
+move[name="water"] {
   background: linear-gradient(45deg, blue, lightblue);
   color: white;
 }
 
-type[name="grass"] {
+type[name="grass"],
+move[name="grass"] {
   background: linear-gradient(45deg, green, lightgreen);
   color: white;
 }
 
-type[name="electric"] {
+type[name="electric"],
+move[name="electric"] {
   background: linear-gradient(45deg, yellow, lightyellow);
   color: rgb(53, 53, 53);
 }
 
-type[name="normal"] {
+type[name="normal"],
+move[name="normal"] {
   background: linear-gradient(45deg, grey, lightgrey);
   color: white;
 }
 
-type[name="fighting"] {
+type[name="fighting"],
+move[name="fighting"] {
   background: linear-gradient(45deg, brown, darkred);
   color: white;
 }
 
-type[name="flying"] {
+type[name="flying"],
+move[name="flying"] {
   background: linear-gradient(45deg, skyblue, lightblue);
   color: white;
 }
 
-type[name="poison"] {
+type[name="poison"],
+move[name="poison"] {
   background: linear-gradient(45deg, rgb(199, 10, 199), violet);
   color: white;
 }
 
-type[name="ground"] {
+type[name="ground"],
+move[name="ground"] {
   background: linear-gradient(45deg, orange, goldenrod);
   color: white;
 }
 
-type[name="rock"] {
+type[name="rock"],
+move[name="rock"] {
   background: linear-gradient(45deg, brown, darkgrey);
   color: white;
 }
 
-type[name="bug"] {
+type[name="bug"],
+move[name="bug"] {
   background: linear-gradient(45deg, green, darkgreen);
   color: white;
 }
 
-type[name="ghost"] {
+type[name="ghost"],
+move[name="ghost"] {
   background: linear-gradient(45deg, rgb(72, 3, 72), purple);
   color: white;
 }
 
-type[name="steel"] {
+type[name="steel"],
+move[name="steel"] {
   background: linear-gradient(45deg, grey, silver);
   color: white;
 }
 
-type[name="fairy"] {
+type[name="fairy"],
+move[name="fairy"] {
   background: linear-gradient(45deg, rgb(150, 92, 102), pink);
   color: white;
 }
 
-type[name="psychic"] {
+type[name="psychic"],
+move[name="psychic"] {
   background: linear-gradient(45deg, rgb(243, 117, 138), pink);
   color: white;
 }
 
-type[name="ice"] {
+type[name="ice"],
+move[name="ice"] {
   background: linear-gradient(45deg, rgb(48, 142, 173), lightblue);
   color: white;
 }
 
-type[name="dragon"] {
+type[name="dragon"],
+move[name="dragon"] {
   background: linear-gradient(45deg, purple, indigo);
   color: white;
 }
 
-type[name="dark"] {
+type[name="dark"],
+move[name="dark"] {
   background: linear-gradient(45deg, black, darkgrey);
   color: white;
 }
