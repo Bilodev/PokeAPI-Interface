@@ -5,4 +5,4 @@ This project offers the user the possibility to create its favourite pokémons c
 
 ## Project Overview
 
-![Project Overview](https://drive.google.com/file/d/1PS006vnTjli7I5CnQf7dezcMO73dhEaK/view?usp=sharing)
+![Project Overview]([https://drive.google.com/file/d](https://drive.google.com/uc?id=1PS006vnTjli7I5CnQf7dezcMO73dhEaK/)
