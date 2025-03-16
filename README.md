@@ -5,4 +5,17 @@ This project offers the user the possibility to create its favourite pokémons c
 
 ## Project Overview
 
-![Project Overview]([https://drive.google.com/file/d](https://drive.google.com/uc?id=1PS006vnTjli7I5CnQf7dezcMO73dhEaK/)
+Click to discover the project.
+
+[![Discover the Project](https://img.icons8.com/external-tulpahn-outline-color-tulpahn/120/external-pokeball-augmented-reality-tulpahn-outline-color-tulpahn.png)](https://drive.google.com/file/d/1PS006vnTjli7I5CnQf7dezcMO73dhEaK/view)
+
+## Installation
+```
+git clone https://github.com/Bilodev/PokeAPI-Interface
+cd PokeAPI-interface
+npm i
+npm run dev
+```
+
+### Side Notes
+This project is created via vite, and its made with svelte-ts. 
