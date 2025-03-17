@@ -19,3 +19,5 @@ npm run dev
 
 ### Side Notes
 This project is created via vite, and its made with svelte-ts. 
+
+[View Published Project](https://pokeinterface.netlify.app/)
